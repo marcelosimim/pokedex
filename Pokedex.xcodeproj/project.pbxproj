@@ -15,6 +15,10 @@
 		A3C2ED272898472F00FD08D0 /* PokedexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2ED262898472F00FD08D0 /* PokedexTests.swift */; };
 		A3C2ED312898472F00FD08D0 /* PokedexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2ED302898472F00FD08D0 /* PokedexUITests.swift */; };
 		A3C2ED332898472F00FD08D0 /* PokedexUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2ED322898472F00FD08D0 /* PokedexUITestsLaunchTests.swift */; };
+		A3C2ED4828984AFE00FD08D0 /* UIColor+Pokedex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2ED4728984AFE00FD08D0 /* UIColor+Pokedex.swift */; };
+		A3C2ED4A28984B5100FD08D0 /* GenerateUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2ED4928984B5100FD08D0 /* GenerateUIColor.swift */; };
+		A3C2ED4D289850AA00FD08D0 /* UIImage+Pokedex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2ED4C289850AA00FD08D0 /* UIImage+Pokedex.swift */; };
+		A3C2ED4F2898510600FD08D0 /* GenerateUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2ED4E2898510600FD08D0 /* GenerateUIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		A3C2ED2C2898472F00FD08D0 /* PokedexUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokedexUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C2ED302898472F00FD08D0 /* PokedexUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexUITests.swift; sourceTree = "<group>"; };
 		A3C2ED322898472F00FD08D0 /* PokedexUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A3C2ED4728984AFE00FD08D0 /* UIColor+Pokedex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Pokedex.swift"; sourceTree = "<group>"; };
+		A3C2ED4928984B5100FD08D0 /* GenerateUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateUIColor.swift; sourceTree = "<group>"; };
+		A3C2ED4C289850AA00FD08D0 /* UIImage+Pokedex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Pokedex.swift"; sourceTree = "<group>"; };
+		A3C2ED4E2898510600FD08D0 /* GenerateUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateUIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +108,7 @@
 				A3C2ED3F2898477700FD08D0 /* Application */,
 				A3C2ED402898478100FD08D0 /* Resources */,
 				A3C2ED412898492D00FD08D0 /* Presentation */,
+				A3C2ED4328984A7A00FD08D0 /* Supporting Files */,
 				A3C2ED1D2898472F00FD08D0 /* Info.plist */,
 			);
 			path = Pokedex;
@@ -154,6 +163,41 @@
 				A3C2ED132898472E00FD08D0 /* PokedexViewController.swift */,
 			);
 			path = Pokedex;
+			sourceTree = "<group>";
+		};
+		A3C2ED4328984A7A00FD08D0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A3C2ED4428984A8400FD08D0 /* Extensions */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3C2ED4428984A8400FD08D0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A3C2ED4B2898509300FD08D0 /* UIImage */,
+				A3C2ED4528984A8E00FD08D0 /* UIColor */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A3C2ED4528984A8E00FD08D0 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				A3C2ED4728984AFE00FD08D0 /* UIColor+Pokedex.swift */,
+				A3C2ED4928984B5100FD08D0 /* GenerateUIColor.swift */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		A3C2ED4B2898509300FD08D0 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				A3C2ED4C289850AA00FD08D0 /* UIImage+Pokedex.swift */,
+				A3C2ED4E2898510600FD08D0 /* GenerateUIImage.swift */,
+			);
+			path = UIImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,8 +330,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3C2ED4828984AFE00FD08D0 /* UIColor+Pokedex.swift in Sources */,
 				A3C2ED142898472E00FD08D0 /* PokedexViewController.swift in Sources */,
+				A3C2ED4A28984B5100FD08D0 /* GenerateUIColor.swift in Sources */,
 				A3C2ED102898472E00FD08D0 /* AppDelegate.swift in Sources */,
+				A3C2ED4D289850AA00FD08D0 /* UIImage+Pokedex.swift in Sources */,
+				A3C2ED4F2898510600FD08D0 /* GenerateUIImage.swift in Sources */,
 				A3C2ED122898472E00FD08D0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
