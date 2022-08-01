@@ -11,4 +11,7 @@ extension UIImage {
     public static var pokeball: UIImage {
         imageBuilder("pokeball")
     }
+    public static var search: UIImage {
+        UIImage(systemName: "magnifyingglass")!
+    }
 }

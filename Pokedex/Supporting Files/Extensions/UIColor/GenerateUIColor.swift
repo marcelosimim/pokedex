@@ -38,4 +38,10 @@ extension UIColor {
     public static var steel: UIColor {
         colorBuilder("steel")
     }
+    public static var lightGray: UIColor {
+        colorBuilder("lightGray")
+    }
+    public static var mediumGray: UIColor {
+        colorBuilder("mediumGray")
+    }
 }

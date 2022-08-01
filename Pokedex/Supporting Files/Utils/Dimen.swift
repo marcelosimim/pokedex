@@ -14,4 +14,5 @@ class Dimen {
     public static let heightMultiplier: CGFloat = deviceHeight/812
     public static let widthMultiplier: CGFloat = deviceWidth/375
     public static let leadingMargin: CGFloat = 24*widthMultiplier
+    public static let textFieldHeight: CGFloat = 34*heightMultiplier
 }
