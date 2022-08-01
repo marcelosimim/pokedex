@@ -18,6 +18,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     }()
     private let imageView = UIImageView()
     private let nameLabel = UILabel()
+    private let numberLabel = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,7 +41,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
 
     private func addViews() {
         contentView.addSubviews([cellBackground, nameLabel])
-        cellBackground.addSubviews([imageView])
+        cellBackground.addSubviews([numberLabel, imageView])
         setupConstraints()
     }
 
@@ -49,6 +50,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         cellBackground.leadingToLeading(of: contentView, margin: 2)
         cellBackground.trailingToTrailing(of: contentView, margin: 2)
         cellBackground.bottomToBottom(of: contentView, margin: 24*Dimen.heightMultiplier)
+
+        numberLabel.trailingToTrailing(of: cellBackground, margin: 8*Dimen.widthMultiplier)
+        numberLabel.topToTop(of: cellBackground, margin: 2)
 
         imageView.topToTop(of: cellBackground, margin: 16*Dimen.heightMultiplier)
         imageView.leadingToLeading(of: cellBackground, margin: 16*Dimen.widthMultiplier)
@@ -66,12 +70,18 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         nameLabel.textColor = .white
     }
 
+    func setupNumber(number: String) {
+        numberLabel.text = "#\(number)"
+        numberLabel.font = .systemFont(ofSize: 10)
+    }
+
     func setupImage(image: UIImage) {
         imageView.image = image
     }
 
-    func setupBackgroundColor(color: UIColor) {
+    func setupMainColor(color: UIColor) {
         contentView.backgroundColor = color
+        numberLabel.textColor = color
         cellBackground.backgroundColor = .white
     }
 }

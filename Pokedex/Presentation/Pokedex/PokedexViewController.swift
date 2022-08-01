@@ -39,8 +39,9 @@ extension PokedexViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
 
         cell.setupName(name: "Pokemon")
+        cell.setupNumber(number: "001")
         cell.setupImage(image: .pokeball)
-        cell.setupBackgroundColor(color: .grass)
+        cell.setupMainColor(color: .grass)
         return cell
     }
 
