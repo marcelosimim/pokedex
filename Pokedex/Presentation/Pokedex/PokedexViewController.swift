@@ -10,6 +10,7 @@ import UIKit
 class PokedexViewController: UIViewController {
 
     private let pokedexView = PokedexView.init()
+    private let viewModel = AppContainer.shared.resolve(PokedexViewModel.self)!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,16 @@ class PokedexViewController: UIViewController {
         super.viewWillAppear(animated)
         pokedexView.collectionView.dataSource = self
         pokedexView.collectionView.delegate = self
+        setupViewModelBinds()
+        viewModel.getAll()
+    }
+
+    private func setupViewModelBinds() {
+        viewModel.pokemons.bindWithoutFire { _ in
+            DispatchQueue.main.async {
+                self.pokedexView.collectionView.reloadData()
+            }
+        }
     }
 }
 
@@ -30,18 +41,18 @@ extension PokedexViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        50
+        viewModel.pokemons.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath) as? PokemonCollectionViewCell else {
             fatalError()
         }
-
-        cell.setupName(name: "Pokemon")
-        cell.setupNumber(number: "001")
-        cell.setupImage(image: .pokeball)
-        cell.setupMainColor(color: .grass)
+        let pokemon = viewModel.pokemons.value[indexPath.row]
+        cell.setupName(name: pokemon.name ?? "")
+        cell.setupNumber(number: "\(indexPath.row)")
+        cell.setupImage(data: pokemon.image)
+        cell.setupMainColor(color: UIColor(named: pokemon.types?[0].type?.name ?? "") ?? .lightGray)
         return cell
     }
 

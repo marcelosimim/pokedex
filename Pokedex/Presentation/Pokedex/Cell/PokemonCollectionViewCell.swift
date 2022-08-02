@@ -68,6 +68,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     func setupName(name: String) {
         nameLabel.text = name
         nameLabel.textColor = .white
+        nameLabel.adjustsFontSizeToFitWidth = true
     }
 
     func setupNumber(number: String) {
@@ -75,8 +76,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         numberLabel.font = .systemFont(ofSize: 10)
     }
 
-    func setupImage(image: UIImage) {
-        imageView.image = image
+    func setupImage(data: Data?) {
+        guard let data = data else { return }
+        imageView.image = UIImage(data: data)
     }
 
     func setupMainColor(color: UIColor) {
