@@ -61,7 +61,7 @@ extension PokedexViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         let pokemon = viewModel.pokemons.value[indexPath.row]
         cell.setupName(name: pokemon.name ?? "")
-        cell.setupNumber(number: "\(indexPath.row)")
+        cell.setupNumber(number: "\(pokemon.id ?? 0)")
         cell.setupImage(data: pokemon.image)
         cell.setupMainColor(color: UIColor(named: pokemon.types?[0].type?.name ?? "") ?? .lightGray)
         return cell
