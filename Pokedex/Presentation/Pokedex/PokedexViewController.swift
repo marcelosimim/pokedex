@@ -15,6 +15,7 @@ class PokedexViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = pokedexView
+        pokedexView.setupSortButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -22,6 +23,7 @@ class PokedexViewController: UIViewController {
         pokedexView.collectionView.dataSource = self
         pokedexView.collectionView.delegate = self
         setupViewModelBinds()
+        setupButton()
         viewModel.getAll()
     }
 
@@ -31,6 +33,15 @@ class PokedexViewController: UIViewController {
                 self.pokedexView.collectionView.reloadData()
             }
         }
+    }
+
+    private func setupButton() {
+        pokedexView.sortButton.addTarget(self, action: #selector(didTapSort), for: .touchUpInside)
+    }
+
+    @objc private func didTapSort() {
+        pokedexView.setupSortButton()
+        viewModel.isAscending ? viewModel.sortByNumber() : viewModel.sortByLetter()
     }
 }
 

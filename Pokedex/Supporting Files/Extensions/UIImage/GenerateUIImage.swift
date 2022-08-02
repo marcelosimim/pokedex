@@ -14,4 +14,10 @@ extension UIImage {
     public static var search: UIImage {
         UIImage(systemName: "magnifyingglass")!
     }
+    public static var byNumber: UIImage {
+        imageBuilder("byNumber")
+    }
+    public static var byLetter: UIImage {
+        imageBuilder("byLetter")
+    }
 }

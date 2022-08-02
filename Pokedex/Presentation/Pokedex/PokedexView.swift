@@ -17,6 +17,7 @@ class PokedexView: UIView {
         collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: PokemonCollectionViewCell.identifier)
         return collectionView
     }()
+    let sortButton = UIButton()
 
     override func layoutSubviews() {
         setupStyles()
@@ -24,18 +25,21 @@ class PokedexView: UIView {
     }
 
     private func addViews() {
-        addSubviews([pokeball, titleLabel, searchTextField, collectionView])
+        addSubviews([pokeball, titleLabel, sortButton, searchTextField, collectionView])
         setupConstraints()
     }
 
     private func setupConstraints() {
-        pokeball.topToTop(of: self, margin: 54*Dimen.heightMultiplier)
+        pokeball.topToTop(of: self, margin: 70*Dimen.heightMultiplier)
         pokeball.leadingToLeading(of: self, margin: Dimen.leadingMargin)
         pokeball.heightTo(24)
         pokeball.widthTo(24)
 
         titleLabel.centerVertical(to: pokeball)
         titleLabel.leadingToTrailing(of: pokeball, margin: 16)
+
+        sortButton.topToTop(of: pokeball)
+        sortButton.trailingToTrailing(of: self, margin: Dimen.leadingMargin)
 
         searchTextField.topToBottom(of: titleLabel, margin: 12*Dimen.heightMultiplier)
         searchTextField.leadingToLeading(of: self, margin: 16*Dimen.widthMultiplier)
@@ -46,6 +50,10 @@ class PokedexView: UIView {
         collectionView.leadingToLeading(of: self, margin: 16)
         collectionView.trailingToTrailing(of: self)
         collectionView.bottomToBottom(of: self)
+    }
+
+    func setupSortButton() {
+        sortButton.currentImage == .byLetter ? sortButton.setImage(.byNumber, for: .normal) : sortButton.setImage(.byLetter, for: .normal)
     }
 }
 
