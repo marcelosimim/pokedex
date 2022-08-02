@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PokemonUseCase {
+protocol PokedexUseCase {
     func getAll(completion: @escaping([PokemonModel]?) -> ())
 }

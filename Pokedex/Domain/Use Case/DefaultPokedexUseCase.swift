@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DefaultPokemonUseCase: PokemonUseCase {
+final class DefaultPokedexUseCase: PokedexUseCase {
     private let pokeAPIRepository: PokeAPIRepository
 
     init(pokeAPIRepository: PokeAPIRepository) {
