@@ -61,7 +61,7 @@ extension PokedexViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         let pokemon = viewModel.pokemons.value[indexPath.row]
         cell.setupName(name: pokemon.name ?? "")
-        cell.setupNumber(number: "\(pokemon.id ?? 0)")
+        cell.setupNumber(number: pokemon.id ?? 0)
         cell.setupImage(data: pokemon.image)
         cell.setupMainColor(color: UIColor(named: pokemon.types?[0].type?.name ?? "") ?? .lightGray)
         return cell
@@ -73,5 +73,12 @@ extension PokedexViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 16)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let newController = PokemonDetailsViewController.init()
+        newController.pokemons = viewModel.pokemons.value
+        newController.indexPath = indexPath.row
+        navigationController?.pushViewController(newController, animated: true)
     }
 }

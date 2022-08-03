@@ -30,7 +30,7 @@ class PokedexView: UIView {
     }
 
     private func setupConstraints() {
-        pokeball.topToTop(of: self, margin: 70*Dimen.heightMultiplier)
+        pokeball.topToTop(of: self, margin: 75*Dimen.heightMultiplier)
         pokeball.leadingToLeading(of: self, margin: Dimen.leadingMargin)
         pokeball.heightTo(24)
         pokeball.widthTo(24)

@@ -26,14 +26,16 @@ class DefaultPokedexViewModel: PokedexViewModel {
     }
 
     func getAll() {
-        pokedexUseCase.getAll { result in
-            guard let result = result else { return }
-            let resultSize = result.count
-            var pokemons = Array(repeating: Pokemon(), count: resultSize)
-            for index in 0...(resultSize-1) {
-                pokemons[index] = Pokemon.fromModel(model: result[index])
+        if pokemons.value.isEmpty {
+            pokedexUseCase.getAll { result in
+                guard let result = result else { return }
+                let resultSize = result.count
+                var pokemons = Array(repeating: Pokemon(), count: resultSize)
+                for index in 0...(resultSize-1) {
+                    pokemons[index] = Pokemon.fromModel(model: result[index])
+                }
+                self.pokemons.value = pokemons
             }
-            self.pokemons.value = pokemons
         }
     }
 

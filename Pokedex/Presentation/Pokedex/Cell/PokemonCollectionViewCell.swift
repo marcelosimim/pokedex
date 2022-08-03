@@ -71,8 +71,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         nameLabel.adjustsFontSizeToFitWidth = true
     }
 
-    func setupNumber(number: String) {
-        numberLabel.text = "#\(number)"
+    func setupNumber(number: Int) {
+        numberLabel.text = String.formatId(id: number)
         numberLabel.font = .systemFont(ofSize: 10)
     }
 
