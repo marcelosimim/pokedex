@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonModel: Decodable {
+struct PokemonModel {
     var abilities: [ResultAbilityModel]?
     var height: Int?
     var weight: Int?
@@ -19,34 +19,30 @@ struct PokemonModel: Decodable {
     var stats: [StatModel]?
 }
 
-struct SpriteModel: Decodable {
-    var front_default: String?
-}
-
-struct ResultTypeModel: Decodable {
+struct ResultTypeModel {
     var type: TypeModel?
 }
 
-struct TypeModel: Decodable {
+struct TypeModel {
     var name: String?
 }
 
-struct ResultAbilityModel: Decodable {
+struct ResultAbilityModel {
     var ability: AbilityModel?
 }
 
-struct AbilityModel: Decodable {
+struct AbilityModel {
     var name: String?
 }
 
-struct ResultMoveModel: Decodable {
+struct ResultMoveModel {
     var move: MoveModel?
 }
 
-struct MoveModel: Decodable {
+struct MoveModel {
     var name: String?
 }
 
-struct StatModel: Decodable {
+struct StatModel {
     var baseStat: Int?
 }

@@ -67,11 +67,11 @@ struct Pokemon {
     }
 }
 
-struct Sprite: Decodable {
+struct Sprite {
     var front_default: String?
 }
 
-struct ResultType: Decodable {
+struct ResultType {
     var type: TypePokemon?
 
     static func fromModel(model: ResultTypeModel) -> ResultType {
@@ -79,7 +79,7 @@ struct ResultType: Decodable {
     }
 }
 
-struct TypePokemon: Decodable {
+struct TypePokemon {
     var name: String?
 
     static func fromModel(model: TypeModel?) -> TypePokemon {
@@ -87,7 +87,7 @@ struct TypePokemon: Decodable {
     }
 }
 
-struct ResultAbility: Decodable {
+struct ResultAbility {
     var ability: Ability?
 
     static func fromModel(model: ResultAbilityModel) -> ResultAbility {
@@ -95,7 +95,7 @@ struct ResultAbility: Decodable {
     }
 }
 
-struct Ability: Decodable {
+struct Ability {
     var name: String?
 
     static func fromModel(model: AbilityModel?) -> Ability {
@@ -103,7 +103,7 @@ struct Ability: Decodable {
     }
 }
 
-struct ResultMove: Decodable {
+struct ResultMove {
     var move: Move?
 
     static func fromModel(model: ResultMoveModel) -> ResultMove {
@@ -111,7 +111,7 @@ struct ResultMove: Decodable {
     }
 }
 
-struct Move: Decodable {
+struct Move {
     var name: String?
 
     static func fromModel(model: MoveModel?) -> Move {
