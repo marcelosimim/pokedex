@@ -33,7 +33,7 @@ final class DefaultPokeAPIRepository: PokeAPIRepository {
     }
 
     private func getPokedex(completion: @escaping (PokedexEntity) -> ()) {
-        guard let sourceURL = URL(string: "\(baseUrl)/pokemon?limit=100&offset=0") else { return }
+        guard let sourceURL = URL(string: "\(baseUrl)/pokemon?limit=500&offset=0") else { return }
 
         URLSession.shared.dataTask(with: sourceURL) { data, response, error in
             if let data = data {

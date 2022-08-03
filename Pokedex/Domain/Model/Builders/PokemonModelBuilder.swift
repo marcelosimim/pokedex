@@ -43,6 +43,7 @@ final class PokemonModelBuilder {
 
     func withTypes(types: [ResultTypeEntity]?) -> PokemonModelBuilder {
         var resultTypeModel = Array(repeating: ResultTypeModel(), count: types?.count ?? 0)
+        if resultTypeModel.count == 0 { return self }
         for index in 0...(resultTypeModel.count-1) {
             resultTypeModel[index].type = types?[index].type.toModel()
         }
@@ -52,6 +53,7 @@ final class PokemonModelBuilder {
 
     func withMoves(moves: [ResultMoveEntity]?) -> PokemonModelBuilder {
         var resultMoveModel = Array(repeating: ResultMoveModel(), count: moves?.count ?? 0)
+        if resultMoveModel.count == 0 { return self }
         for index in 0...(resultMoveModel.count-1) {
             resultMoveModel[index].move = moves?[index].move.toModel()
         }
@@ -66,6 +68,7 @@ final class PokemonModelBuilder {
 
     func withStats(stats: [StatEntity]?) -> PokemonModelBuilder {
         var statModel = Array(repeating: StatModel(), count: stats?.count ?? 0)
+        if statModel.count == 0 { return self }
         for index in 0...(statModel.count-1) {
             statModel[index] = stats?[index].toModel() ?? statModel[index]
         }
