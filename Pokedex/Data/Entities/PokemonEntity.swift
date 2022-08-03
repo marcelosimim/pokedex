@@ -36,6 +36,23 @@ struct PokemonEntity: Decodable {
 
 struct SpriteEntity: Decodable {
     let front_default: String?
+    let other: OtherSpriteEntity?
+}
+
+struct OtherSpriteEntity: Decodable {
+    let officialArtwork: OtherEntity
+
+    enum CodingKeys: String, CodingKey {
+        case officialArtwork = "official-artwork"
+    }
+}
+
+struct OtherEntity: Decodable {
+    let frontDefault: String
+
+   enum CodingKeys: String, CodingKey {
+       case frontDefault = "front_default"
+   }
 }
 
 struct ResultTypeEntity: Decodable {

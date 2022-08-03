@@ -18,7 +18,7 @@ final class DefaultPokeAPIRepository: PokeAPIRepository {
                 let url =  pokedex.results[index].url 
                 self.getPokemonInfo(url: url) { pokemon in
                     pokemons[index] = pokemon.toModel()
-                    let imageUrl = pokemon.sprites?.front_default ?? ""
+                    let imageUrl = pokemon.sprites?.other?.officialArtwork.frontDefault ?? ""
                     self.getImageData(from: imageUrl) { data, response, error in
                         guard let data = data else {
                             completion(pokemons)
