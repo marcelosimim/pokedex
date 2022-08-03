@@ -33,7 +33,7 @@ final class DefaultPokeAPIRepository: PokeAPIRepository {
     }
 
     private func getPokedex(completion: @escaping (PokedexEntity) -> ()) {
-        guard let sourceURL = URL(string: "\(baseUrl)/pokemon?limit=100000&offset=0") else { return }
+        guard let sourceURL = URL(string: "\(baseUrl)/pokemon?limit=100&offset=0") else { return }
 
         URLSession.shared.dataTask(with: sourceURL) { data, response, error in
             if let data = data {
@@ -57,6 +57,22 @@ final class DefaultPokeAPIRepository: PokeAPIRepository {
                     let decoder = JSONDecoder()
                     let result = try decoder.decode(PokemonEntity.self, from: data)
                     completion(result)
+                } catch (let error){
+                    print("error \(error)")
+                }
+            }
+        }.resume()
+    }
+
+    func getDescription(id: Int, completion: @escaping (DescriptionModel?) -> ()) {
+        guard let sourceURL = URL(string: "\(baseUrl)/pokemon-species/\(id)") else { return }
+
+        URLSession.shared.dataTask(with: sourceURL) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let result = try decoder.decode(DescripitonEntity.self, from: data)
+                    completion(result.toModel())
                 } catch (let error){
                     print("error \(error)")
                 }

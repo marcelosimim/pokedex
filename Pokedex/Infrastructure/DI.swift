@@ -14,6 +14,8 @@ class AppContainer {
         container.register(PokeAPIRepository.self) { _ in DefaultPokeAPIRepository()}
         container.register(PokedexUseCase.self) { r in DefaultPokedexUseCase(pokeAPIRepository: r.resolve(PokeAPIRepository.self)!)}
         container.register(PokedexViewModel.self) { r in DefaultPokedexViewModel(pokedexUseCase: r.resolve(PokedexUseCase.self)!)}
+        container.register(DescriptionUseCase.self) { r in DefaultDescriptionUseCase(pokeAPIRepository: r.resolve(PokeAPIRepository.self)!)}
+        container.register(PokemonDetailsViewModel.self) { r in DefaultPokemonDetailsViewModel(descriptionUseCase: r.resolve(DescriptionUseCase.self)!)}
         return container
     }()
 }

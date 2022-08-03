@@ -10,10 +10,13 @@ import Foundation
 struct PokemonModel: Decodable {
     var abilities: [ResultAbilityModel]?
     var height: Int?
+    var weight: Int?
     var id: Int?
     var name: String?
     var types: [ResultTypeModel]?
-    var image: Data? 
+    var image: Data?
+    var moves: [ResultMoveModel]?
+    var stats: [StatModel]?
 }
 
 struct SpriteModel: Decodable {
@@ -34,4 +37,16 @@ struct ResultAbilityModel: Decodable {
 
 struct AbilityModel: Decodable {
     var name: String?
+}
+
+struct ResultMoveModel: Decodable {
+    var move: MoveModel?
+}
+
+struct MoveModel: Decodable {
+    var name: String?
+}
+
+struct StatModel: Decodable {
+    var baseStat: Int?
 }

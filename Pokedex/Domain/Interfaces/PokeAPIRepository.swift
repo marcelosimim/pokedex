@@ -9,4 +9,5 @@ import Foundation
 
 protocol PokeAPIRepository {
     func getAll(completion: @escaping([PokemonModel]?) -> ())
+    func getDescription(id: Int, completion: @escaping(DescriptionModel?) -> ())
 }

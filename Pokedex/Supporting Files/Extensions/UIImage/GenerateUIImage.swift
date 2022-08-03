@@ -20,4 +20,13 @@ extension UIImage {
     public static var byLetter: UIImage {
         imageBuilder("byLetter")
     }
+    public static var whitePokeball: UIImage {
+        imageBuilder("whitePokeball")
+    }
+    public static var scale: UIImage {
+        UIImage(systemName: "scalemass.fill")!
+    }
+    public static var ruler: UIImage {
+        UIImage(systemName: "ruler.fill")!
+    }
 }
