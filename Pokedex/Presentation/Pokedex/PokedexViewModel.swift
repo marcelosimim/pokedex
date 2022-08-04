@@ -8,18 +8,23 @@
 import Foundation
 
 protocol PokedexViewModel {
-    var pokemons:Observable<[Pokemon]> { get }
+    var pokemons: Observable<[Pokemon]> { get }
+    var searchResult: Observable<[Pokemon]> { get }
     var isAscending: Bool { get set }
+    var isSearching: Observable<Bool> { get }
 
     func getAll()
     func sortByNumber()
     func sortByLetter()
+    func search(_ text: String)
 }
 
 class DefaultPokedexViewModel: PokedexViewModel {
     private let pokedexUseCase: PokedexUseCase
     var pokemons: Observable<[Pokemon]> = Observable([])
+    var searchResult: Observable<[Pokemon]> = Observable([])
     var isAscending = false
+    var isSearching = Observable<Bool>(false)
 
     init(pokedexUseCase: PokedexUseCase) {
         self.pokedexUseCase = pokedexUseCase
@@ -51,5 +56,21 @@ class DefaultPokedexViewModel: PokedexViewModel {
             return a.name ?? "" < b.name ?? ""
         }
         isAscending.toggle()
+    }
+
+    func search(_ text: String) {
+        if text.isEmpty {
+            isSearching.value = false
+        } else {
+            isSearching.value = true
+            filterPokemons(text)
+        }
+    }
+
+    private func filterPokemons(_ text: String) {
+        searchResult.value = pokemons.value.filter { pokemon in
+            guard let name = pokemon.name else { return false }
+            return name.starts(with: text)
+        }
     }
 }

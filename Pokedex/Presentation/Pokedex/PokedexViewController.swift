@@ -22,6 +22,8 @@ class PokedexViewController: UIViewController {
         super.viewWillAppear(animated)
         pokedexView.collectionView.dataSource = self
         pokedexView.collectionView.delegate = self
+        pokedexView.searchTextField.delegate = self
+        pokedexView.searchTextField.addTarget(self, action: #selector(textFieldDidChange), for:  UIControl.Event.editingChanged)
         setupViewModelBinds()
         setupButton()
         viewModel.getAll()
@@ -31,6 +33,19 @@ class PokedexViewController: UIViewController {
         viewModel.pokemons.bindWithoutFire { _ in
             DispatchQueue.main.async {
                 self.pokedexView.collectionView.reloadData()
+            }
+        }
+        viewModel.searchResult.bindWithoutFire { _ in
+            DispatchQueue.main.async {
+                self.pokedexView.collectionView.reloadData()
+            }
+        }
+        viewModel.isSearching.bindWithoutFire { isSearching in
+            self.pokedexView.sortButton.isEnabled = !isSearching
+            if !isSearching {
+                DispatchQueue.main.async {
+                    self.pokedexView.collectionView.reloadData()
+                }
             }
         }
     }
@@ -52,14 +67,14 @@ extension PokedexViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.pokemons.value.count
+        getPokemonData().count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath) as? PokemonCollectionViewCell else {
             fatalError()
         }
-        let pokemon = viewModel.pokemons.value[indexPath.row]
+        let pokemon = getPokemonData()[indexPath.row]
         cell.setupName(name: pokemon.name ?? "")
         cell.setupNumber(number: pokemon.id ?? 0)
         cell.setupImage(data: pokemon.image)
@@ -77,8 +92,29 @@ extension PokedexViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let newController = PokemonDetailsViewController.init()
-        newController.pokemons = viewModel.pokemons.value
+        newController.pokemons = getPokemonData()
         newController.indexPath = indexPath.row
         navigationController?.pushViewController(newController, animated: true)
+    }
+
+    private func isSearching() -> Bool {
+        viewModel.isSearching.value
+    }
+
+    private func getPokemonData() -> [Pokemon] {
+        isSearching() ? viewModel.searchResult.value : viewModel.pokemons.value
+    }
+}
+
+extension PokedexViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        viewModel.search(textField.text?.lowercased() ?? "")
+        return true
+    }
+
+    @objc private func textFieldDidChange() {
+        guard let text = pokedexView.searchTextField.text?.lowercased() else { return }
+        viewModel.search(text)
     }
 }
