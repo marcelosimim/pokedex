@@ -38,6 +38,30 @@ extension UIColor {
     public static var steel: UIColor {
         colorBuilder("steel")
     }
+    public static var poison: UIColor {
+        colorBuilder("poison")
+    }
+    public static var ground: UIColor {
+        colorBuilder("ground")
+    }
+    public static var fairy: UIColor {
+        colorBuilder("fairy")
+    }
+    public static var fighting: UIColor {
+        colorBuilder("fighting")
+    }
+    public static var rock: UIColor {
+        colorBuilder("rock")
+    }
+    public static var ice: UIColor {
+        colorBuilder("ice")
+    }
+    public static var dragon: UIColor {
+        colorBuilder("dragon")
+    }
+    public static var dark: UIColor {
+        colorBuilder("dark")
+    }
     public static var lightGray: UIColor {
         colorBuilder("lightGray")
     }
